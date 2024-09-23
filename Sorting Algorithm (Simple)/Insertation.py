@@ -1,13 +1,30 @@
 import random
+import time
 
 def insertion_sort(arr):
+  # waktu_awal = time.time()
+  # swap_count = 0
+  # comparison_count = 0
   for i in range(1, len(arr)):
     key = arr[i]
     j = i - 1
     while j >= 0 and key < arr[j]:
+      # comparison_count += 1
       arr[j + 1] = arr[j]
       j -= 1
+      # swap_count += 1
+    #   print(f"Swap: {arr[j+1]} <-> {arr[j+2]}, Array: {arr}")
     arr[j + 1] = key
+    # if j >= 0:
+    #   comparison_count += 1
+      # print(f"Comparison: {key} <-> {arr[j]}, Array: {arr}")
+  # return swap_count, comparison_count
+    # print(arr)
+  # global waktu
+  # waktu_akhir = time.time()
+  # waktu = waktu_akhir - waktu_awal
+
+
 
 # def insertion_sort_reverse(arr):
 #   for i in range(1, len(arr)):
@@ -39,7 +56,7 @@ def input_almost_sorted_data():
 
 def input_random_data():
   n = int(input("Masukkan jumlah elemen: "))
-  arr = [random.randint(1, 100) for _ in range(n)]
+  arr = [random.randint(1, 1000) for _ in range(n)]
   return arr
 
 def main():
@@ -50,8 +67,7 @@ def main():
     print("2. Input data yang hampir ter-sort ke array")
     print("3. Input data random ke array")
     print("4. Sort data dalam array")
-    # print("5. Sort data dalam array secara terbalik")
-    print("6. Exit")
+    print("5. Exit")
     choice = int(input("Pilih opsi: "))
 
     if choice == 1:
@@ -68,19 +84,16 @@ def main():
       print_array(arr)
     elif choice == 4:
       if arr:
+        # swap_count, comparison_count = insertion_sort(arr)
         insertion_sort(arr)
         print("Array setelah diurutkan:")
         print_array(arr)
+        # print(f"Jumlah swap: {swap_count}")
+        # print(f"Jumlah perbandingan: {comparison_count}")
+        # print(f"Waktu yang dibutuhkan untuk mengurutkan: {waktu:.6f} detik")
       else:
         print("Array kosong, silakan input data terlebih dahulu.")
-    # elif choice == 5:
-    #   if arr:
-    #     insertion_sort_reverse(arr)
-    #     print("Array setelah diurutkan secara terbalik:")
-    #     print_array(arr)
-    #   else:
-    #     print("Array kosong, silakan input data terlebih dahulu.")
-    elif choice == 6:
+    elif choice == 5:
       break
     else:
       print("Pilihan tidak valid, silakan coba lagi.")
