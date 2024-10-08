@@ -23,7 +23,7 @@ class LinkedList:
     def push(self, data):
         new_node = Node(data)
         new_node.next = self.head
-        self.head = self.head
+        self.head = new_node
 
     def pop(self):
         if not self.head:
@@ -129,12 +129,12 @@ def shell_sort_linked_list(linked_list):
                 j -= gap
                 loop_count += 1
                 swap_count += 1
-                print(f"Swap: {arr[j]} <-> {arr[j + gap]}, index: {arr}")
+                # print(f"Swap: {arr[j]} <-> {arr[j + gap]}, index: {arr}")
             arr[j] = temp
             loop_count += 1
             if j >= gap:
                 comparison_count += 1
-                print(f"Comparison: {temp} <-> {arr[j - gap]}, index: {arr}")
+                # print(f"Comparison: {temp} <-> {arr[j - gap]}, index: {arr}")
         gap //= 2
     
     waktu_akhir = time.time()
@@ -163,7 +163,7 @@ def input_random_data():
     n = int(input("Masukkan jumlah elemen: "))
     linked_list = LinkedList()
     for _ in range(n):
-        linked_list.append(random.randint(1, 1000))
+        linked_list.append(random.randint(1, 10000))
     return linked_list
 
 def main():
@@ -199,10 +199,10 @@ def main():
                 swap_count, comparison_count, loop_count, waktu = shell_sort_linked_list(linked_list)
                 print("Linked list setelah diurutkan:")
                 linked_list.print_list()
-                print(f"Total loop: {loop_count}")
+                # print(f"Total loop: {loop_count}")
                 print(f"Jumlah swap: {swap_count}")
-                print(f"Jumlah perbandingan: {comparison_count}")
-                print(f"Waktu yang dibutuhkan untuk mengurutkan: {waktu:.6f} detik")
+                # print(f"Jumlah perbandingan: {comparison_count}")
+                # print(f"Waktu yang dibutuhkan untuk mengurutkan: {waktu:.6f} detik")
             else:
                 print("Linked list kosong, silakan input data terlebih dahulu.")
         elif choice == 5:
