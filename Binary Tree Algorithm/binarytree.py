@@ -1,3 +1,6 @@
+import random
+import string
+
 class Node():
     def __init__(self, key):
         self.key = key
@@ -74,7 +77,7 @@ class Tree():
                     return node.getLeft()
                 sem = self.find_min(node.getRight())
                 node.key = sem.key
-                node.setRight(remove_node(node.getRight(), sem))
+                node.setRight(remove_node(node.getRight(), sem.key))
             return node
 
         if self.contains(key):
@@ -88,8 +91,6 @@ class Tree():
         while sem.getLeft():
             sem = sem.getLeft()
         return sem
-
-    
 
     def in_order(self):
         def display_in_order(node):
@@ -121,34 +122,86 @@ class Tree():
         print()
 
 
+    def height(self):
+        def node_height(node):
+            if node is None:
+                return -1
+            left_height = node_height(node.getLeft())
+            right_height = node_height(node.getRight())
+            return 1 + max(left_height, right_height)
+
+        return node_height(self.root)
+    
+    def add_random_nodes(self, count=10):
+        for _ in range(count):
+            key = random.choice(string.ascii_uppercase)
+            self.add(key)
+        print(f"{count} random nodes added to the tree.\n")
+        
+    def depth(self, key):
+        def get_depth(node, key, current_depth):
+            if node is None:
+                return -1
+            if node.getValue() == key:
+                return current_depth
+            elif key < node.getValue():
+                return get_depth(node.getLeft(), key, current_depth + 1)
+            else:
+                return get_depth(node.getRight(), key, current_depth + 1)
+        
+        return get_depth(self.root, key, 1)
+
 def menu():
     tree = Tree()
     while True:
         print("\nMenu:")
-        print("1. Tambah Node")
-        print("2. Hapus Node")
-        print("3. Tampilkan Tree (In-order)")
-        print("4. Tampilkan Tree (Pre-order)")
-        print("5. Tampilkan Tree (Post-order)")
-        print("6. Keluar")
+        print("1. Tambah key")
+        print("2. Hapus key")
+        print("3. Tampilkan Tinggi Tree")
+        print("4. Tambah 10 key Random")
+        print("5. Cari Depth Node")
+        print("6. Tampilkan Tree (In-order)")
+        print("7. Tampilkan Tree (Pre-order)")
+        print("8. Tampilkan Tree (Post-order)")
+        print("9. Keluar")
         choice = input("Pilih opsi: ")
 
         if choice == '1':
-            key = int(input("Masukkan nilai Node yang akan ditambahkan: "))
-            tree.add(key)
+            key = input("Masukkan nilai Node yang akan ditambahkan: ")
+            if len(key) != 1:
+                print("Harap masukkan satu karakter.")
+            else:
+                tree.add(key)
         elif choice == '2':
-            key = int(input("Masukkan nilai Node yang akan dihapus: "))
-            tree.remove(key)
+            key = input("Masukkan nilai Node yang akan dihapus: ")
+            if len(key) != 1:
+                print("Harap masukkan satu karakter.")
+            else:
+                tree.remove(key)
         elif choice == '3':
+            print(f"Tinggi Tree: {tree.height()}")
+        elif choice == '4':
+            tree.add_random_nodes()
+        elif choice == '5':
+            key = input("Masukkan nilai Node yang ingin dicari depth-nya: ")
+            if len(key) != 1:
+                print("Harap masukkan satu karakter.")
+            else:
+                depth = tree.depth(key)
+                if depth != -1:
+                    print(f"Depth Node {key} adalah {depth}")
+                else:
+                    print(f"Node {key} tidak ditemukan di Tree.")
+        elif choice == '6':
             print("In-order traversal:")
             tree.in_order()
-        elif choice == '4':
+        elif choice == '7':
             print("Pre-order traversal:")
             tree.pre_order()
-        elif choice == '5':
+        elif choice == '8':
             print("Post-order traversal:")
             tree.post_order()
-        elif choice == '6':
+        elif choice == '9':
             print("Keluar dari program.")
             break
         else:
