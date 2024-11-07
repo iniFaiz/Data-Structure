@@ -31,25 +31,25 @@ class Tree():
         newNode = Node(key)
         if self.root is None:
             self.root = newNode
-            print(f'Berhasil insert Node bernilai {key} ke Tree!\n')
+            print(f'Berhasil insert key bernilai {key} ke Tree!\n')
             return
 
         sem = self.root
         if self.contains(key):
-            print(f'Node dengan nilai {key} sudah ada di Tree, tidak boleh ada duplikat\n')
+            print(f'key dengan nilai {key} sudah ada di Tree, tidak boleh ada duplikat\n')
             return
         else:
             while True:
                 if key < sem.getValue():
                     if sem.getLeft() is None:
                         sem.setLeft(newNode)
-                        print(f'Berhasil insert Node bernilai {key} ke Tree!\n')
+                        print(f'Berhasil insert key bernilai {key} ke Tree!\n')
                         return
                     sem = sem.getLeft()
                 else:
                     if sem.getRight() is None:
                         sem.setRight(newNode)
-                        print(f'Berhasil insert Node bernilai {key} ke Tree!\n')
+                        print(f'Berhasil insert key bernilai {key} ke Tree!\n')
                         return
                     sem = sem.getRight()
 
@@ -82,9 +82,9 @@ class Tree():
 
         if self.contains(key):
             self.root = remove_node(self.root, key)
-            print(f'Node dengan nilai {key} berhasil dihapus dari Tree!')
+            print(f'key dengan nilai {key} berhasil dihapus dari Tree!')
         else:
-            print(f'Node dengan nilai {key} tidak ditemukan di Tree!')
+            print(f'key dengan nilai {key} tidak ditemukan di Tree!')
 
     def find_min(self, node):
         sem = node
@@ -125,7 +125,7 @@ class Tree():
     def height(self):
         def node_height(node):
             if node is None:
-                return -1
+                return 0
             left_height = node_height(node.getLeft())
             right_height = node_height(node.getRight())
             return 1 + max(left_height, right_height)
@@ -136,7 +136,7 @@ class Tree():
         for _ in range(count):
             key = random.choice(string.ascii_uppercase)
             self.add(key)
-        print(f"{count} random nodes added to the tree.\n")
+        print(f"{count} random key added to the tree.\n")
         
     def depth(self, key):
         def get_depth(node, key, current_depth):
@@ -159,7 +159,7 @@ def menu():
         print("2. Hapus key")
         print("3. Tampilkan Tinggi Tree")
         print("4. Tambah 10 key Random")
-        print("5. Cari Depth Node")
+        print("5. Cari Depth key")
         print("6. Tampilkan Tree (In-order)")
         print("7. Tampilkan Tree (Pre-order)")
         print("8. Tampilkan Tree (Post-order)")
@@ -167,13 +167,13 @@ def menu():
         choice = input("Pilih opsi: ")
 
         if choice == '1':
-            key = input("Masukkan nilai Node yang akan ditambahkan: ")
+            key = input("Masukkan nilai key yang akan ditambahkan: ")
             if len(key) != 1:
                 print("Harap masukkan satu karakter.")
             else:
                 tree.add(key)
         elif choice == '2':
-            key = input("Masukkan nilai Node yang akan dihapus: ")
+            key = input("Masukkan nilai key yang akan dihapus: ")
             if len(key) != 1:
                 print("Harap masukkan satu karakter.")
             else:
@@ -183,15 +183,15 @@ def menu():
         elif choice == '4':
             tree.add_random_nodes()
         elif choice == '5':
-            key = input("Masukkan nilai Node yang ingin dicari depth-nya: ")
+            key = input("Masukkan nilai key yang ingin dicari depth-nya: ")
             if len(key) != 1:
                 print("Harap masukkan satu karakter.")
             else:
                 depth = tree.depth(key)
                 if depth != -1:
-                    print(f"Depth Node {key} adalah {depth}")
+                    print(f"Depth key {key} adalah {depth}")
                 else:
-                    print(f"Node {key} tidak ditemukan di Tree.")
+                    print(f"key {key} tidak ditemukan di Tree.")
         elif choice == '6':
             print("In-order traversal:")
             tree.in_order()
