@@ -306,6 +306,15 @@ class RedBlackTree():
                 key = random.choice(string.ascii_uppercase)
                 self.add(key)
             print(f"{count} random keys added to the tree.\n")
+            
+        # def add_random_nodes(self, count=10):
+        #     existing_keys = set()
+        #     while len(existing_keys) < count:
+        #         key = random.randint(1, 100)
+        #         if key not in existing_keys:
+        #             existing_keys.add(key)
+        #             self.add(key)
+        #     print(f"{count} random unique integer keys added to the tree.\n")
 
 def menu():
         tree = RedBlackTree()
