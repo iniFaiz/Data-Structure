@@ -486,9 +486,11 @@ class DictionaryApp(ctk.CTk):
 
         self.indonesian_list = tk.Listbox(self.frame)
         self.indonesian_list.pack(side='left', fill='both', expand=True)
+        self.indonesian_list.config(font=("Arial", 14))
         self.indonesian_list.bind('<<ListboxSelect>>', self.on_select)
 
         self.english_list = tk.Listbox(self.frame)
+        self.english_list.config(font=("Arial", 14))
         self.english_list.pack(side='left', fill='both', expand=True)
         
         self.tree = RedBlackTree()
@@ -526,8 +528,8 @@ class DictionaryApp(ctk.CTk):
 
             # Gimmick 'besar'
             if selected_word == 'besar':
-                self.indonesian_list.config(font=("Arial", 16, "bold"))
-                self.english_list.config(font=("Arial", 16, "bold"))
+                self.indonesian_list.config(font=("Arial", 24, "bold"))
+                self.english_list.config(font=("Arial", 24, "bold"))
             
             # Gimmick 'kucing'
             if selected_word == 'kucing':
@@ -537,6 +539,7 @@ class DictionaryApp(ctk.CTk):
             if selected_word == 'keluar':
                 self.destroy()
             
+            # Gimmick 'calculator' dan 'random'
             if selected_word == 'acak':
                 random_number = ''.join([str(random.randint(0, 9)) for _ in range(10)])
                 self.english_list.delete(index)
